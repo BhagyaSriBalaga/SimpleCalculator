@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="container">
+    <h2>Calculator</h2>
+
+        <!-- <span id="data"></span> -->
+        <div id="data">0</div>
+            <div class="all">
+                <div>
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <button id="delete">DEL</button>
+                </div>
+                <div>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button>+</button>
+                </div>
+                <div>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>-</button>
+                </div>
+                <div>
+                    <button>.</button>
+                    <button>0</button>
+                    <button>/</button>
+                    <button>*</button>
+                </div>
+                <div class="lastBtns">
+                    <button type="reset" id="reset">RESET</button>
+                    <button type="submit" id="result" onclick="console.log(eval(exp))" >=</button>
+                </div>
+        </div>
+    </div>
+    <script>
+        let dataElement=document.getElementById('data');
+        console.log(dataElement);
+        let exp="";
+        let buttons=document.querySelectorAll('button')
+        console.log(buttons);
+
+        buttons.forEach(display)
+
+        function display(button){
+            button.addEventListener('click',function(){
+                    // let value=parseInt(item.innerText)
+                    console.log(button.innerHTML);
+                    try{
+                        if(button.innerText=='DEL'){
+                        exp=exp.slice(0,-1);
+                    dataElement.innerHTML=exp;
+
+                    }
+                    else if(button.innerText=='RESET'){
+                        exp="";
+                    dataElement.innerHTML=exp;
+
+                    }
+                    else if(button.innerText=="="){
+                       
+                        dataElement.innerHTML=eval(exp)
+                    
+                    }
+                    
+                    else{
+                        exp=exp+=button.innerHTML;
+                    dataElement.innerHTML=exp;
+
+                    }
+                   
+                    }
+                    catch(e){
+                    dataElement.innerHTML="Invalid Syntax";
+                        
+                    }
+                    
+            })
+        }
+    </script>
+    <style>
+        body{
+            background: rgb(25, 47, 47);
+            font-family: sans-serif;
+
+        }
+        h2{
+            color: aliceblue;
+            /* background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)); */
+            text-shadow: 
+            0 0 7px #fff;
+            /* 0 0 10px #fff
+            0 0 21px #fff; */
+            font-size: 40px;
+            margin: 5px;
+        }
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .all{
+            border: solid gray;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: gray 2px 5px 5px;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+
+        }
+        button{
+            width: 50px;
+            height: 50px;
+            background: rgb(10, 112, 135);
+            color: white;
+            box-shadow: gray 2px 5px 5px;
+            margin: 5px;
+            border-radius: 5px;
+            border: solid 0.5px;
+            cursor: pointer;
+            font-size: 20px;
+            
+            
+
+        }
+        button:hover{
+            background: rgb(153, 207, 219);
+            color: black;
+            border: none;
+
+        }
+        .lastBtns button{
+            width: 100px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .lastBtns{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+        #data{
+            border: solid gray;
+            width: 320px;
+            height: 50px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: gray 2px 5px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-weight: bold;
+            font-size: 30px;
+            color: azure;
+            
+        }
+        /* .all,#data{
+            width: 300px;
+        } */
+        #reset{
+            background: rgb(230, 62, 62);
+        }
+        #result{
+            background: rgb(48, 114, 228);
+        }
+        #delete{
+            background: rgb(24, 196, 226);
+        }
+    </style>
+</body>
+</html>
